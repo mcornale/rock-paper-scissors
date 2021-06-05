@@ -15,6 +15,7 @@ const playerChoiceShow = document.querySelector(
 const computerChoiceShow = document.querySelector(
     ".game__computer .game__choice-box"
 );
+const scoreElement = document.querySelector(".score__value");
 
 const gameResultsText = document.querySelector(".game__result");
 const gameResultTitle = document.querySelector(".game__result-title");
@@ -25,13 +26,14 @@ let computerChoice;
 let playerChoiceIndex;
 let computerChoiceIndex;
 let gameResult;
+let score = 0;
 
 const initGame = function () {
-    let playerChoice = "";
-    let computerChoice = "";
-    let playerChoiceIndex = "";
-    let computerChoiceIndex = "";
-    let gameResult = "";
+    playerChoice = "";
+    computerChoice = "";
+    playerChoiceIndex = "";
+    computerChoiceIndex = "";
+    gameResult = "";
 
     playerChoiceShow.innerHTML = "";
     computerChoiceShow.innerHTML = "";
@@ -71,6 +73,7 @@ const calculateResult = function () {
         gameResult = "DRAW";
     } else if (playerChoiceIndexWin === computerChoiceIndex) {
         gameResult = "WIN";
+        score++;
     } else {
         gameResult = "LOSE";
     }
@@ -96,7 +99,7 @@ const renderResults = function () {
 const generateIconMarkup = function (choice, choiceIndex) {
     return `
     <div
-        class="game__icon game__icon--${choice} top-left"
+        class="game__icon game__icon--${choice}"
         data-choice="paper"
     >
         <img src="${ELEMENTS_IMAGES[choiceIndex]}" alt="Paper icon" />
@@ -128,6 +131,30 @@ const transitionToSeeResults = async function () {
         }
     ).finished;
 
+    await playerChoiceShow.querySelector(".game__icon").animate(
+        [
+            { transform: "scale(0.4)", opacity: "0" },
+            { transform: "scale(1.4)", opacity: "1" },
+        ],
+        {
+            duration: 600,
+            easing: "cubic-bezier(0.42, 0, 0, 0.92)",
+            fill: "both",
+        }
+    ).finished;
+
+    await computerChoiceShow.querySelector(".game__icon").animate(
+        [
+            { transform: "scale(0.4)", opacity: "0" },
+            { transform: "scale(1.4)", opacity: "1" },
+        ],
+        {
+            duration: 600,
+            easing: "cubic-bezier(0.42, 0, 0, 0.92)",
+            fill: "both",
+        }
+    ).finished;
+
     await gameResultsText.animate(
         [
             { transform: "scale(0)", width: "0rem" },
@@ -135,7 +162,7 @@ const transitionToSeeResults = async function () {
         ],
         {
             duration: 600,
-            easing: "ease-in",
+            easing: "ease-in-out",
             fill: "both",
         }
     ).finished;
@@ -160,6 +187,8 @@ const transitionToSeeResults = async function () {
             fill: "both",
         }
     ).finished;
+
+    scoreElement.innerHTML = score;
 };
 
 const transitionToInit = async function () {
@@ -189,10 +218,10 @@ const transitionToInit = async function () {
     ).finished;
 
     await gameChoice.animate(
-        [{ transform: "scale(0)" }, { transform: "scale(1)", opacity: "1" }],
+        [{ transform: "scale(0.4)" }, { transform: "scale(1)", opacity: "1" }],
         {
             duration: 300,
-            easing: "cubic-bezier(0.42, 0, 0, 0.92)",
+            easing: "linear",
             fill: "both",
         }
     ).finished;
