@@ -14,10 +14,77 @@
 
         <link rel="stylesheet" href="main.scss" />
 
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap"
+            rel="stylesheet"
+        />
+        <script src="script.js" defer></script>
+
         <title>Frontend Mentor | Rock, Paper, Scissors</title>
     </head>
     <body>
-        Score Rules You Picked The House Picked You Win You Lose Play Again
+        <header class="header">
+            <img src="images/logo.svg" alt="Logo" />
+            <div class="score">
+                <h3 class="score__label">Score</h3>
+                <p class="score__value">12</p>
+            </div>
+        </header>
+        <div class="game">
+            <section class="game__choice">
+                <img src="images/bg-triangle.svg" alt="" />
+                <div
+                    class="game__icon game__icon--paper top-left"
+                    data-choice="paper"
+                >
+                    <img src="images/icon-paper.svg" alt="Paper icon" />
+                </div>
+
+                <div
+                    class="game__icon game__icon--scissors top-right"
+                    data-choice="scissors"
+                >
+                    <img src="images/icon-scissors.svg" alt="Scissors icon" />
+                </div>
+                <div
+                    class="game__icon game__icon--rock bottom-center"
+                    data-choice="rock"
+                >
+                    <img src="images/icon-rock.svg" alt="Rock icon" />
+                </div>
+            </section>
+
+            <section class="game__results-box">
+                <div class="game__player">
+                    <h2 class="game__title">YOU PICKED</h2>
+                    <div class="game__choice-box">
+                        <div
+                            class="game__icon game__icon--paper top-left"
+                            data-choice="paper"
+                        >
+                            <img src="images/icon-paper.svg" alt="Paper icon" />
+                        </div>
+                    </div>
+                </div>
+                <div class="game__result">
+                    <h1 class="game__result-title">YOU WIN</h1>
+                    <button class="button button--bg">PLAY AGAIN</button>
+                </div>
+                <div class="game__computer">
+                    <h2 class="game__title">THE HOUSE PICKED</h2>
+                    <div class="game__choice-box">
+                        <div
+                            class="game__icon game__icon--paper top-left"
+                            data-choice="paper"
+                        >
+                            <img src="images/icon-paper.svg" alt="Paper icon" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <button class="button button--no-bg">RULES</button>
         <!-- <div class="attribution">
             Challenge by
             <a
