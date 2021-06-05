@@ -67,7 +67,7 @@ html {
 
 body {
     font-family: "Barlow Semi Condensed", sans-serif;
-    min-height: 100vh;
+    min-height: 80vh;
     background-image: radial-gradient(
         ellipse at top,
         $gradient-radial-body-light,
@@ -175,7 +175,7 @@ body {
 
         @include respond(medium) {
             position: static;
-            margin: 6rem auto 2rem;
+            margin: 6rem auto 4rem;
         }
     }
 }

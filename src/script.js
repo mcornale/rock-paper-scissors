@@ -111,7 +111,6 @@ const transitionToSeeResults = async function () {
     const iconScale = getComputedStyle(
         document.documentElement
     ).getPropertyValue("--scale-icon-value");
-    console.log(iconScale);
 
     await gameChoice.animate(
         [{ transform: "scale(1)" }, { transform: "scale(0.4)", opacity: "0" }],
@@ -160,17 +159,19 @@ const transitionToSeeResults = async function () {
         }
     ).finished;
 
-    await gameResultsText.animate(
-        [
-            { transform: "scale(0)", width: "0rem" },
-            { transform: "scale(1)", width: "30rem" },
-        ],
-        {
-            duration: 600,
-            easing: "ease-in-out",
-            fill: "both",
-        }
-    ).finished;
+    if (getComputedStyle(gameResultsText).order !== 3) {
+        await gameResultsText.animate(
+            [
+                { transform: "scale(0)", width: "0rem" },
+                { transform: "scale(1)", width: "30rem" },
+            ],
+            {
+                duration: 600,
+                easing: "ease-in-out",
+                fill: "both",
+            }
+        ).finished;
+    }
 
     gameResultTitle.classList.remove("hidden");
     playAgainBtn.classList.remove("hidden");
