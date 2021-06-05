@@ -212,17 +212,6 @@ const transitionToInit = async function () {
 
     gameResultsBox.classList.add("hidden");
 
-    await gameResultsText.animate(
-        [
-            { transform: "scale(1)", width: "30rem" },
-            { transform: "scale(0)", width: "0rem" },
-        ],
-        {
-            duration: 0,
-            fill: "both",
-        }
-    ).finished;
-
     await gameChoice.animate(
         [{ transform: "scale(0.4)" }, { transform: "scale(1)", opacity: "1" }],
         {
