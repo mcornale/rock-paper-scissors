@@ -159,7 +159,7 @@ const transitionToSeeResults = async function () {
         }
     ).finished;
 
-    if (getComputedStyle(gameResultsText).order !== 3) {
+    if (getComputedStyle(gameResultsText).order !== "3") {
         await gameResultsText.animate(
             [
                 { transform: "scale(0)", width: "0rem" },
