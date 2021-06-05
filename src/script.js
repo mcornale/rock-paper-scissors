@@ -70,7 +70,7 @@ const calculateResult = function () {
             : playerChoiceIndex - 1;
 
     if (playerChoiceIndex === computerChoiceIndex) {
-        gameResult = "DRAW";
+        gameResult = "TIED";
     } else if (playerChoiceIndexWin === computerChoiceIndex) {
         gameResult = "WIN";
         score++;
@@ -108,6 +108,11 @@ const generateIconMarkup = function (choice, choiceIndex) {
 };
 
 const transitionToSeeResults = async function () {
+    const iconScale = getComputedStyle(
+        document.documentElement
+    ).getPropertyValue("--scale-icon-value");
+    console.log(iconScale);
+
     await gameChoice.animate(
         [{ transform: "scale(1)" }, { transform: "scale(0.4)", opacity: "0" }],
         {
@@ -134,7 +139,7 @@ const transitionToSeeResults = async function () {
     await playerChoiceShow.querySelector(".game__icon").animate(
         [
             { transform: "scale(0.4)", opacity: "0" },
-            { transform: "scale(1.4)", opacity: "1" },
+            { transform: `scale(${iconScale})`, opacity: "1" },
         ],
         {
             duration: 600,
@@ -146,7 +151,7 @@ const transitionToSeeResults = async function () {
     await computerChoiceShow.querySelector(".game__icon").animate(
         [
             { transform: "scale(0.4)", opacity: "0" },
-            { transform: "scale(1.4)", opacity: "1" },
+            { transform: `scale(${iconScale})`, opacity: "1" },
         ],
         {
             duration: 600,

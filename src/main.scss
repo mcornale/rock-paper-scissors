@@ -13,9 +13,43 @@ $color-gray-light: hsl(216, 12%, 92%);
 $gradient-radial-body-light: hsl(214, 47%, 23%);
 $gradient-radial-body-dark: hsl(237, 49%, 15%);
 
+@mixin respond($breakpoint) {
+    @if ($breakpoint == large) {
+        @media (max-width: 68.75em) {
+            @content;
+        }
+    }
+
+    @if ($breakpoint == medium) {
+        @media (max-width: 62.5em) {
+            @content;
+        }
+    }
+
+    @if ($breakpoint == small) {
+        @media (max-width: 40.625em) {
+            @content;
+        }
+    }
+}
+
 :root {
-    --max-content-width: 70%;
+    --max-content-width: 110rem;
     --game-icon-size: 20rem;
+    --scale-icon-value: 1.4;
+
+    @include respond(large) {
+        --game-icon-size: 18rem;
+    }
+
+    @include respond(medium) {
+        --scale-icon-value: 1.2;
+    }
+
+    @include respond(small) {
+        --game-icon-size: 12rem;
+        --scale-icon-value: 1;
+    }
 }
 
 *,
@@ -40,7 +74,12 @@ body {
     );
     color: $color-gray-light;
     position: relative;
-    padding: 4rem 0;
+    padding: 4rem;
+    text-align: center;
+
+    @include respond(small) {
+        padding: 2rem;
+    }
 }
 
 .header {
@@ -52,6 +91,16 @@ body {
     border: 0.3rem solid $color-header-outline;
     padding: 2rem;
     border-radius: 1.4rem;
+
+    &__logo {
+        @include respond(small) {
+            height: 6rem;
+        }
+    }
+
+    @include respond(small) {
+        padding: 1.4rem;
+    }
 }
 
 .score {
@@ -61,36 +110,55 @@ body {
     font-weight: 700;
     text-align: center;
 
+    @include respond(small) {
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+    }
+
     &__label {
         color: $color-score-text;
         font-size: 1.6rem;
         text-transform: uppercase;
         letter-spacing: 0.3rem;
+
+        @include respond(small) {
+            font-size: 1.4rem;
+            letter-spacing: 0.1rem;
+        }
     }
 
     &__value {
         color: $color-dark-text;
         line-height: 1;
         font-size: 6rem;
+
+        @include respond(small) {
+            font-size: 4rem;
+        }
     }
 }
 
 .button {
     font-family: inherit;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     letter-spacing: 0.3rem;
-    padding: 1rem 3rem;
+
     border-radius: 0.8rem;
     cursor: pointer;
     border: none;
 
     &--play-again {
         background-color: $color-gray-light;
-        width: 80%;
+        width: 24rem;
         transition: all 0.2s;
+        padding: 1.6rem 3rem;
 
         &:hover {
             color: $gradient-rock-1;
+        }
+
+        @include respond(small) {
+            width: 20rem;
         }
     }
 
@@ -102,6 +170,12 @@ body {
         position: absolute;
         right: 3rem;
         bottom: 3rem;
+        padding: 1rem 3rem;
+
+        @include respond(medium) {
+            position: static;
+            margin: 6rem auto 4rem;
+        }
     }
 }
 
@@ -111,8 +185,18 @@ body {
     justify-content: center;
     align-items: center;
 
+    &__bg {
+        @include respond(small) {
+            width: 90%;
+        }
+    }
+
+    @include respond(medium) {
+        justify-content: flex-start;
+    }
+
     &__choice {
-        margin: 6rem 0;
+        margin: 8rem 0;
         padding: calc(var(--game-icon-size) / 2);
         position: relative;
         display: inline-block;
@@ -193,7 +277,7 @@ body {
     }
 
     &__results-box {
-        margin: 6rem 0 14rem;
+        margin: 8rem 0 14rem;
         position: absolute;
         width: 100%;
         user-select: none;
@@ -201,6 +285,28 @@ body {
         justify-content: center;
         align-items: center;
         gap: 12rem;
+
+        @include respond(large) {
+            gap: 8rem;
+        }
+
+        @include respond(medium) {
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 8rem;
+        }
+
+        @include respond(small) {
+            gap: 10vw;
+        }
+    }
+
+    &__player,
+    &__computer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     &__title {
@@ -209,12 +315,31 @@ body {
         letter-spacing: 0.3rem;
         text-align: center;
         margin-bottom: 8rem;
+
+        @include respond(medium) {
+            order: 2;
+            margin-top: 3rem;
+            margin-bottom: 0rem;
+            font-size: 2rem;
+        }
+
+        @include respond(small) {
+            font-size: 1.4rem;
+            letter-spacing: 0.2rem;
+        }
     }
 
     &__result {
         width: 0rem;
         padding-top: 8rem;
         text-align: center;
+
+        @include respond(medium) {
+            margin-top: 2rem;
+            order: 3;
+            flex: 1 0 100%;
+            padding: 0;
+        }
     }
 
     &__result-title {
@@ -223,11 +348,17 @@ body {
         letter-spacing: 0.3rem;
         text-align: center;
         margin-bottom: 1rem;
+
+        @include respond(small) {
+            font-size: 5rem;
+        }
     }
 
     &__choice-box {
-        width: var(--game-icon-size);
-        height: var(--game-icon-size);
+        width: calc(var(--game-icon-size) * var(--scale-icon-value));
+        height: calc(var(--game-icon-size) * var(--scale-icon-value));
+        display: grid;
+        place-items: center;
         position: relative;
 
         &::before {
