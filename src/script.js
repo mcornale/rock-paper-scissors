@@ -1,9 +1,44 @@
+import "regenerator-runtime/runtime";
+
+import paperImage from "/images/icon-paper.svg";
+import scissorsImage from "/images/icon-scissors.svg";
+import rockImage from "/images/icon-rock.svg";
+
 const GAME_ELEMENTS = ["paper", "scissors", "rock"];
+const ELEMENTS_IMAGES = [paperImage, scissorsImage, rockImage];
 
 const gameChoice = document.querySelector(".game__choice");
+const gameResultsBox = document.querySelector(".game__results-box");
+const playerChoiceShow = document.querySelector(
+    ".game__player .game__choice-box"
+);
+const computerChoiceShow = document.querySelector(
+    ".game__computer .game__choice-box"
+);
+
+const gameResultsText = document.querySelector(".game__result");
+const gameResultTitle = document.querySelector(".game__result-title");
+const playAgainBtn = document.querySelector(".button--play-again");
 
 let playerChoice;
 let computerChoice;
+let playerChoiceIndex;
+let computerChoiceIndex;
+let gameResult;
+
+const initGame = function () {
+    let playerChoice = "";
+    let computerChoice = "";
+    let playerChoiceIndex = "";
+    let computerChoiceIndex = "";
+    let gameResult = "";
+
+    playerChoiceShow.innerHTML = "";
+    computerChoiceShow.innerHTML = "";
+    gameResultTitle.innerHTML = "";
+
+    transitionToInit();
+};
 
 const getPlayerChoice = function (e) {
     const choiceEl = e.target.closest(".game__icon");
@@ -23,8 +58,8 @@ const genComputerChoice = function () {
 };
 
 const calculateResult = function () {
-    const playerChoiceIndex = GAME_ELEMENTS.indexOf(playerChoice);
-    const computerChoiceIndex = GAME_ELEMENTS.indexOf(computerChoice);
+    playerChoiceIndex = GAME_ELEMENTS.indexOf(playerChoice);
+    computerChoiceIndex = GAME_ELEMENTS.indexOf(computerChoice);
 
     //Player WINS only if computer chooses the option before in the ARRAY
     const playerChoiceIndexWin =
@@ -33,12 +68,138 @@ const calculateResult = function () {
             : playerChoiceIndex - 1;
 
     if (playerChoiceIndex === computerChoiceIndex) {
-        console.log("DRAW");
+        gameResult = "DRAW";
     } else if (playerChoiceIndexWin === computerChoiceIndex) {
-        console.log("WIN");
+        gameResult = "WIN";
     } else {
-        console.log("LOSE");
+        gameResult = "LOSE";
     }
+
+    transitionToSeeResults();
+    renderResults();
+};
+
+const renderResults = function () {
+    playerChoiceShow.innerHTML = generateIconMarkup(
+        playerChoice,
+        playerChoiceIndex
+    );
+
+    computerChoiceShow.innerHTML = generateIconMarkup(
+        computerChoice,
+        computerChoiceIndex
+    );
+
+    gameResultTitle.innerHTML = `YOU ${gameResult}`;
+};
+
+const generateIconMarkup = function (choice, choiceIndex) {
+    return `
+    <div
+        class="game__icon game__icon--${choice} top-left"
+        data-choice="paper"
+    >
+        <img src="${ELEMENTS_IMAGES[choiceIndex]}" alt="Paper icon" />
+    </div>
+    `;
+};
+
+const transitionToSeeResults = async function () {
+    await gameChoice.animate(
+        [{ transform: "scale(1)" }, { transform: "scale(0.4)", opacity: "0" }],
+        {
+            duration: 600,
+            easing: "cubic-bezier(0.42, 0, 0, 0.92)",
+            fill: "both",
+        }
+    ).finished;
+
+    gameResultsBox.classList.remove("hidden");
+
+    await gameResultsBox.animate(
+        [
+            { transform: "scale(0.4)", opacity: "0" },
+            { transform: "scale(1)", opacity: "1" },
+        ],
+        {
+            duration: 300,
+            easing: "linear",
+            fill: "both",
+        }
+    ).finished;
+
+    await gameResultsText.animate(
+        [
+            { transform: "scale(0)", width: "0rem" },
+            { transform: "scale(1)", width: "30rem" },
+        ],
+        {
+            duration: 600,
+            easing: "ease-in",
+            fill: "both",
+        }
+    ).finished;
+
+    gameResultTitle.classList.remove("hidden");
+    playAgainBtn.classList.remove("hidden");
+
+    gameResultTitle.animate(
+        [{ transform: "scale(0)" }, { transform: `scale(1)` }],
+        {
+            duration: 600,
+            easing: "cubic-bezier(0.42, 0, 0, 0.92)",
+            fill: "both",
+        }
+    ).finished;
+
+    playAgainBtn.animate(
+        [{ transform: "scale(0)" }, { transform: `scale(1)` }],
+        {
+            duration: 600,
+            easing: "cubic-bezier(0.42, 0, 0, 0.92)",
+            fill: "both",
+        }
+    ).finished;
+};
+
+const transitionToInit = async function () {
+    await gameResultsBox.animate(
+        [
+            { transform: "scale(1)", opacity: "1" },
+            { transform: "scale(0.4)", opacity: "0" },
+        ],
+        {
+            duration: 600,
+            easing: "cubic-bezier(0.42, 0, 0, 0.92)",
+            fill: "both",
+        }
+    ).finished;
+
+    gameResultsBox.classList.add("hidden");
+
+    await gameResultsText.animate(
+        [
+            { transform: "scale(1)", width: "30rem" },
+            { transform: "scale(0)", width: "0rem" },
+        ],
+        {
+            duration: 0,
+            fill: "both",
+        }
+    ).finished;
+
+    await gameChoice.animate(
+        [{ transform: "scale(0)" }, { transform: "scale(1)", opacity: "1" }],
+        {
+            duration: 300,
+            easing: "cubic-bezier(0.42, 0, 0, 0.92)",
+            fill: "both",
+        }
+    ).finished;
+
+    gameResultTitle.classList.add("hidden");
+    playAgainBtn.classList.add("hidden");
 };
 
 gameChoice.addEventListener("click", getPlayerChoice);
+playAgainBtn.addEventListener("click", initGame);

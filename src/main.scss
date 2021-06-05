@@ -84,9 +84,9 @@ body {
     cursor: pointer;
     border: none;
 
-    &--bg {
+    &--play-again {
         background-color: $color-gray-light;
-        width: 100%;
+        width: 80%;
         transition: all 0.2s;
 
         &:hover {
@@ -193,8 +193,8 @@ body {
     }
 
     &__results-box {
-        margin: 8rem 0;
-        position: relative;
+        margin: 8rem 0 14rem;
+        position: absolute;
         width: 100%;
         user-select: none;
         display: flex;
@@ -209,6 +209,12 @@ body {
         letter-spacing: 0.3rem;
         text-align: center;
         margin-bottom: 8rem;
+    }
+
+    &__result {
+        width: 0rem;
+        padding-top: 8rem;
+        text-align: center;
     }
 
     &__result-title {
@@ -260,4 +266,8 @@ body {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.hidden {
+    display: none;
 }
