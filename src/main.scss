@@ -55,6 +55,7 @@ $gradient-radial-body-dark: hsl(237, 49%, 15%);
 *,
 *::before,
 *::after {
+    -webkit-tap-highlight-color: transparent;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -205,6 +206,10 @@ body {
         & > * {
             cursor: pointer;
         }
+
+        @include respond(medium) {
+            margin: 5rem 0;
+        }
     }
 
     &__choice &__icon {
@@ -277,7 +282,7 @@ body {
     }
 
     &__results-box {
-        margin: 8rem 0 14rem;
+        margin: 8rem 0;
         position: absolute;
         width: 100%;
         user-select: none;
@@ -293,11 +298,8 @@ body {
         @include respond(medium) {
             flex-wrap: wrap;
             align-items: flex-start;
-            gap: 8rem;
-        }
-
-        @include respond(small) {
             gap: 10vw;
+            margin: 5rem 0;
         }
     }
 
