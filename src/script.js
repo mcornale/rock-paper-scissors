@@ -16,10 +16,13 @@ const computerChoiceShow = document.querySelector(
     ".game__computer .game__choice-box"
 );
 const scoreElement = document.querySelector(".score__value");
-
 const gameResultsText = document.querySelector(".game__result");
 const gameResultTitle = document.querySelector(".game__result-title");
 const playAgainBtn = document.querySelector(".button--play-again");
+const openPopupBtn = document.querySelector(".button--no-bg");
+const popup = document.querySelector(".popup");
+const popupBackground = document.querySelector(".popup__bg");
+const closePopupBtn = document.querySelector(".popup__close");
 
 let playerChoice;
 let computerChoice;
@@ -105,6 +108,52 @@ const generateIconMarkup = function (choice, choiceIndex) {
         <img src="${ELEMENTS_IMAGES[choiceIndex]}" alt="Paper icon" />
     </div>
     `;
+};
+
+const openPopup = async function () {
+    popup.classList.remove("hidden");
+    popupBackground.classList.remove("hidden");
+
+    popupBackground.animate([{ opacity: "0" }, { opacity: "1" }], {
+        duration: 200,
+        easing: "ease-in",
+        fill: "both",
+    });
+
+    popup.animate(
+        [
+            { transform: "translate(-50%, -50%) scale(0.8)", opacity: "0" },
+            { transform: "translate(-50%, -50%) scale(1)", opacity: "1" },
+        ],
+        {
+            duration: 400,
+            easing: "cubic-bezier(0.42, 0, 0, 0.92)",
+            fill: "both",
+        }
+    );
+};
+
+const closePopup = async function () {
+    popupBackground.animate([{ opacity: "1" }, { opacity: "0" }], {
+        duration: 200,
+        easing: "ease-in",
+        fill: "both",
+    });
+
+    await popup.animate(
+        [
+            { transform: "translate(-50%, -50%) scale(1)" },
+            { transform: "translate(-50%, -50%) scale(0)" },
+        ],
+        {
+            duration: 400,
+            easing: "cubic-bezier(0.42, 0, 0, 0.92)",
+            fill: "both",
+        }
+    ).finished;
+
+    popup.classList.add("hidden");
+    popupBackground.classList.add("hidden");
 };
 
 const transitionToSeeResults = async function () {
@@ -223,7 +272,23 @@ const transitionToInit = async function () {
 
     gameResultTitle.classList.add("hidden");
     playAgainBtn.classList.add("hidden");
+
+    if (getComputedStyle(gameResultsText).order !== "3") {
+        gameResultsText.animate(
+            [
+                { transform: "scale(1)", width: "30rem" },
+                { transform: "scale(0)", width: "0rem" },
+            ],
+            {
+                duration: 0,
+                easing: "ease-in-out",
+                fill: "both",
+            }
+        );
+    }
 };
 
 gameChoice.addEventListener("click", getPlayerChoice);
 playAgainBtn.addEventListener("click", initGame);
+openPopupBtn.addEventListener("click", openPopup);
+closePopupBtn.addEventListener("click", closePopup);
