@@ -449,6 +449,14 @@ body {
     }
 }
 
+.attribution {
+    color: $color-gray-light;
+
+    a {
+        color: $color-gray-light;
+    }
+}
+
 .top-left {
     position: absolute;
     top: 0;
