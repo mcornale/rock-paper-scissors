@@ -394,10 +394,14 @@ body {
     align-items: flex-start;
     padding: 3rem 4rem;
     border-radius: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     @include respond(small) {
         width: 100vw;
-        height: 100vh;
+        height: 100%;
         border-radius: 0;
         justify-content: flex-start;
         align-items: center;
@@ -438,6 +442,10 @@ body {
         width: 100vw;
         height: 100vh;
         background-color: rgba($gradient-radial-body-dark, 0.8);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
 
@@ -458,13 +466,6 @@ body {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-}
-
-.fixed-center {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .hidden {
