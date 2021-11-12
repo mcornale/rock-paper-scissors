@@ -14,471 +14,471 @@ $gradient-radial-body-light: hsl(214, 47%, 23%);
 $gradient-radial-body-dark: hsl(237, 49%, 15%);
 
 @mixin respond($breakpoint) {
-    @if ($breakpoint == large) {
-        @media (max-width: 68.75em) {
-            @content;
-        }
+  @if ($breakpoint == large) {
+    @media (max-width: 68.75em) {
+      @content;
     }
+  }
 
-    @if ($breakpoint == medium) {
-        @media (max-width: 62.5em) {
-            @content;
-        }
+  @if ($breakpoint == medium) {
+    @media (max-width: 62.5em) {
+      @content;
     }
+  }
 
-    @if ($breakpoint == small) {
-        @media (max-width: 40.625em) {
-            @content;
-        }
+  @if ($breakpoint == small) {
+    @media (max-width: 40.625em) {
+      @content;
     }
+  }
 }
 
 :root {
-    --max-content-width: 80rem;
-    --game-icon-size: 20rem;
-    --scale-icon-value: 1.4;
+  --max-content-width: 80rem;
+  --game-icon-size: 20rem;
+  --scale-icon-value: 1.4;
 
-    @include respond(large) {
-        --game-icon-size: 18rem;
-    }
+  @include respond(large) {
+    --game-icon-size: 18rem;
+  }
 
-    @include respond(medium) {
-        --scale-icon-value: 1.2;
-    }
+  @include respond(medium) {
+    --scale-icon-value: 1.2;
+  }
 
-    @include respond(small) {
-        --game-icon-size: 12rem;
-        --scale-icon-value: 1;
-    }
+  @include respond(small) {
+    --game-icon-size: 12rem;
+    --scale-icon-value: 1;
+  }
 }
 
 *,
 *::before,
 *::after {
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    min-height: 100vh;
-    background-image: radial-gradient(
-        ellipse at top,
-        $gradient-radial-body-light,
-        $gradient-radial-body-dark
-    );
-    color: $color-gray-light;
-    position: relative;
-    padding: 4rem;
-    text-align: center;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  min-height: 100vh;
+  background-image: radial-gradient(
+    ellipse at top,
+    $gradient-radial-body-light,
+    $gradient-radial-body-dark
+  );
+  color: $color-gray-light;
+  position: relative;
+  padding: 4rem;
+  text-align: center;
 
-    @include respond(small) {
-        padding: 2rem;
-    }
+  @include respond(small) {
+    padding: 2rem;
+  }
 }
 
 .header {
-    max-width: var(--max-content-width);
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 0.3rem solid $color-header-outline;
-    padding: 2rem;
-    border-radius: 1.4rem;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.3rem solid $color-header-outline;
+  padding: 2rem;
+  border-radius: 1.4rem;
 
-    &__logo {
-        @include respond(small) {
-            height: 6rem;
-        }
-    }
-
+  &__logo {
     @include respond(small) {
-        padding: 1.4rem;
+      height: 6rem;
     }
+  }
+
+  @include respond(small) {
+    padding: 1.4rem;
+  }
 }
 
 .score {
-    background-color: $color-gray-light;
-    padding: 1rem 5rem;
-    border-radius: 1rem;
-    font-weight: 700;
-    text-align: center;
+  background-color: $color-gray-light;
+  padding: 1rem 5rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  text-align: center;
+
+  @include respond(small) {
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+  }
+
+  &__label {
+    color: $color-score-text;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
 
     @include respond(small) {
-        padding: 1rem 2rem;
-        border-radius: 0.5rem;
+      font-size: 1.4rem;
+      letter-spacing: 0.1rem;
     }
+  }
 
-    &__label {
-        color: $color-score-text;
-        font-size: 1.6rem;
-        text-transform: uppercase;
-        letter-spacing: 0.3rem;
+  &__value {
+    color: $color-dark-text;
+    line-height: 1;
+    font-size: 6rem;
 
-        @include respond(small) {
-            font-size: 1.4rem;
-            letter-spacing: 0.1rem;
-        }
+    @include respond(small) {
+      font-size: 4rem;
     }
-
-    &__value {
-        color: $color-dark-text;
-        line-height: 1;
-        font-size: 6rem;
-
-        @include respond(small) {
-            font-size: 4rem;
-        }
-    }
+  }
 }
 
 .button {
-    font-family: inherit;
-    font-size: 1.7rem;
-    letter-spacing: 0.3rem;
+  font-family: inherit;
+  font-size: 1.7rem;
+  letter-spacing: 0.3rem;
 
-    border-radius: 0.8rem;
-    cursor: pointer;
-    border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  border: none;
 
-    &--play-again {
-        background-color: $color-gray-light;
-        width: 24rem;
-        transition: all 0.2s;
-        padding: 1.6rem 3rem;
+  &--play-again {
+    background-color: $color-gray-light;
+    width: 24rem;
+    transition: all 0.2s;
+    padding: 1.6rem 3rem;
 
-        &:hover {
-            color: $gradient-rock-1;
-        }
-
-        @include respond(small) {
-            width: 20rem;
-        }
+    &:hover {
+      color: $gradient-rock-1;
     }
 
-    &--no-bg {
-        border: 2px solid $color-header-outline;
-        background: transparent;
-        color: $color-gray-light;
-        font-weight: 600;
-        position: absolute;
-        right: 3rem;
-        bottom: 3rem;
-        padding: 1rem 3rem;
-
-        @include respond(medium) {
-            position: static;
-            margin: 6rem auto 4rem;
-        }
+    @include respond(small) {
+      width: 20rem;
     }
+  }
+
+  &--no-bg {
+    border: 2px solid $color-header-outline;
+    background: transparent;
+    color: $color-gray-light;
+    font-weight: 600;
+    position: absolute;
+    right: 3rem;
+    bottom: 3rem;
+    padding: 1rem 3rem;
+
+    @include respond(medium) {
+      position: static;
+      margin: 6rem auto 4rem;
+    }
+  }
 }
 
 .game {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 
-    &__bg {
-        @include respond(small) {
-            width: 90%;
-        }
+  &__bg {
+    @include respond(small) {
+      width: 90%;
+    }
+  }
+
+  @include respond(medium) {
+    justify-content: flex-start;
+  }
+
+  &__choice {
+    margin: 8rem 0;
+    padding: calc(var(--game-icon-size) / 2);
+    position: relative;
+    display: inline-block;
+    user-select: none;
+
+    & > * {
+      cursor: pointer;
     }
 
     @include respond(medium) {
-        justify-content: flex-start;
+      margin: 5rem 0;
+    }
+  }
+
+  &__choice &__icon {
+    &:hover {
+      box-shadow: none;
     }
 
-    &__choice {
-        margin: 8rem 0;
-        padding: calc(var(--game-icon-size) / 2);
-        position: relative;
-        display: inline-block;
-        user-select: none;
+    &:hover {
+      &::before {
+        box-shadow: none;
+      }
+    }
+  }
 
-        & > * {
-            cursor: pointer;
-        }
+  &__icon {
+    width: var(--game-icon-size);
+    height: var(--game-icon-size);
+    border-radius: 50%;
+    box-shadow: inset 0rem calc(var(--game-icon-size) / -30)
+      rgba($color-dark-text, 0.4);
+    transition: all 0.4s;
+    position: relative;
 
-        @include respond(medium) {
-            margin: 5rem 0;
-        }
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30%;
     }
 
-    &__choice &__icon {
-        &:hover {
-            box-shadow: none;
-        }
-
-        &:hover {
-            &::before {
-                box-shadow: none;
-            }
-        }
+    &--paper {
+      background-image: linear-gradient(
+        to bottom,
+        $gradient-paper-1,
+        $gradient-paper-2
+      );
     }
 
-    &__icon {
-        width: var(--game-icon-size);
-        height: var(--game-icon-size);
-        border-radius: 50%;
-        box-shadow: inset 0rem calc(var(--game-icon-size) / -30)
-            rgba($color-dark-text, 0.4);
-        transition: all 0.4s;
-        position: relative;
-
-        img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30%;
-        }
-
-        &--paper {
-            background-image: linear-gradient(
-                to bottom,
-                $gradient-paper-1,
-                $gradient-paper-2
-            );
-        }
-
-        &--scissors {
-            background-image: linear-gradient(
-                to bottom,
-                $gradient-scissors-1,
-                $gradient-scissors-2
-            );
-        }
-
-        &--rock {
-            background-image: linear-gradient(
-                to bottom,
-                $gradient-rock-1,
-                $gradient-rock-2
-            );
-        }
-
-        &::before {
-            content: '';
-            display: inline-block;
-            width: 75%;
-            height: 75%;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: $color-gray-light;
-            box-shadow: inset 0rem calc(var(--game-icon-size) / 30)
-                rgba($color-dark-text, 0.2);
-            transition: all 0.4s;
-        }
+    &--scissors {
+      background-image: linear-gradient(
+        to bottom,
+        $gradient-scissors-1,
+        $gradient-scissors-2
+      );
     }
 
-    &__results-box {
-        margin: 8rem 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        user-select: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8rem;
-
-        @include respond(large) {
-            gap: 8rem;
-        }
-
-        @include respond(medium) {
-            flex-wrap: wrap;
-            align-items: flex-start;
-            gap: 10vw;
-            margin: 5rem 0;
-        }
+    &--rock {
+      background-image: linear-gradient(
+        to bottom,
+        $gradient-rock-1,
+        $gradient-rock-2
+      );
     }
 
-    &__player,
-    &__computer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 75%;
+      height: 75%;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $color-gray-light;
+      box-shadow: inset 0rem calc(var(--game-icon-size) / 30)
+        rgba($color-dark-text, 0.2);
+      transition: all 0.4s;
+    }
+  }
+
+  &__results-box {
+    margin: 8rem 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8rem;
+
+    @include respond(large) {
+      gap: 8rem;
     }
 
-    &__title {
-        font-size: 2.3rem;
-        font-weight: 600;
-        letter-spacing: 0.3rem;
-        text-align: center;
-        margin-bottom: 8rem;
+    @include respond(medium) {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 10vw;
+      margin: 5rem 0;
+    }
+  }
 
-        @include respond(medium) {
-            order: 2;
-            margin-top: 3rem;
-            margin-bottom: 0rem;
-            font-size: 2rem;
-        }
+  &__player,
+  &__computer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-        @include respond(small) {
-            font-size: 1.4rem;
-            letter-spacing: 0.2rem;
-        }
+  &__title {
+    font-size: 2.3rem;
+    font-weight: 600;
+    letter-spacing: 0.3rem;
+    text-align: center;
+    margin-bottom: 8rem;
+
+    @include respond(medium) {
+      order: 2;
+      margin-top: 3rem;
+      margin-bottom: 0rem;
+      font-size: 2rem;
     }
 
-    &__result {
-        width: 0rem;
-        padding-top: 8rem;
-        text-align: center;
-
-        @include respond(medium) {
-            margin-top: 0rem;
-            order: 3;
-            flex: 1 0 100%;
-            padding: 0;
-        }
+    @include respond(small) {
+      font-size: 1.4rem;
+      letter-spacing: 0.2rem;
     }
+  }
 
-    &__result-title {
-        font-size: 6rem;
-        font-weight: 700;
-        letter-spacing: 0.3rem;
-        text-align: center;
-        margin-bottom: 1rem;
+  &__result {
+    width: 0rem;
+    padding-top: 8rem;
+    text-align: center;
 
-        @include respond(small) {
-            font-size: 5rem;
-        }
+    @include respond(medium) {
+      margin-top: 0rem;
+      order: 3;
+      flex: 1 0 100%;
+      padding: 0;
     }
+  }
 
-    &__choice-box {
-        width: calc(var(--game-icon-size) * var(--scale-icon-value));
-        height: calc(var(--game-icon-size) * var(--scale-icon-value));
-        display: grid;
-        place-items: center;
-        position: relative;
+  &__result-title {
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: 0.3rem;
+    text-align: center;
+    margin-bottom: 1rem;
 
-        &::before {
-            content: '';
-            display: inline-block;
-            width: 75%;
-            height: 75%;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: $gradient-radial-body-dark;
-        }
+    @include respond(small) {
+      font-size: 5rem;
     }
+  }
 
-    &__choice-box &__icon {
-        transform: scale(0);
+  &__choice-box {
+    width: calc(var(--game-icon-size) * var(--scale-icon-value));
+    height: calc(var(--game-icon-size) * var(--scale-icon-value));
+    display: grid;
+    place-items: center;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 75%;
+      height: 75%;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $gradient-radial-body-dark;
     }
+  }
+
+  &__choice-box &__icon {
+    transform: scale(0);
+  }
 }
 
 .popup {
-    background-color: $color-gray-light;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 3rem 4rem;
-    border-radius: 1rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  background-color: $color-gray-light;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 4rem;
+  border-radius: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @include respond(small) {
+    width: 100vw;
+    height: 100%;
+    border-radius: 0;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__title {
+    color: $color-dark-text;
+    font-size: 2.6rem;
+    text-align: left;
 
     @include respond(small) {
-        width: 100vw;
-        height: 100%;
-        border-radius: 0;
-        justify-content: flex-start;
-        align-items: center;
+      text-align: center;
     }
+  }
 
-    &__title {
-        color: $color-dark-text;
-        font-size: 2.6rem;
-        text-align: left;
-
-        @include respond(small) {
-            text-align: center;
-        }
-    }
-
-    &__close {
-        padding: inherit;
-        cursor: pointer;
-        position: absolute;
-        top: 0;
-        right: 0;
-
-        @include respond(small) {
-            top: auto;
-            right: auto;
-            bottom: 0;
-        }
-    }
-
-    &__rules {
-        margin-top: 3rem;
-        @include respond(small) {
-            margin-top: 8rem;
-        }
-    }
-
-    &__bg {
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba($gradient-radial-body-dark, 0.8);
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-}
-
-.attribution {
-    color: $color-gray-light;
-    position: absolute;
-    bottom: 3rem;
-    left: 50%;
-    transform: translateX(-50%);
-
-    a {
-        color: $color-gray-light;
-    }
-}
-
-.top-left {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.top-right {
+  &__close {
+    padding: inherit;
+    cursor: pointer;
     position: absolute;
     top: 0;
     right: 0;
+
+    @include respond(small) {
+      top: auto;
+      right: auto;
+      bottom: 0;
+    }
+  }
+
+  &__rules {
+    margin-top: 3rem;
+    @include respond(small) {
+      margin-top: 8rem;
+    }
+  }
+
+  &__bg {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($gradient-radial-body-dark, 0.8);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.attribution {
+  color: $color-gray-light;
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  a {
+    color: $color-gray-light;
+  }
+}
+
+.top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .bottom-center {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
