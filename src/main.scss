@@ -35,11 +35,11 @@ $gradient-radial-body-dark: hsl(237, 49%, 15%);
 
 :root {
   --max-content-width: 80rem;
-  --game-icon-size: 20rem;
+  --game-icon-size: 18rem;
   --scale-icon-value: 1.4;
 
   @include respond(large) {
-    --game-icon-size: 18rem;
+    --game-icon-size: 15rem;
   }
 
   @include respond(medium) {
@@ -394,6 +394,7 @@ body {
   padding: 3rem 4rem;
   border-radius: 1rem;
   position: absolute;
+  z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -454,6 +455,7 @@ body {
   bottom: 3rem;
   left: 50%;
   transform: translateX(-50%);
+  width: 100%;
 
   a {
     color: $color-gray-light;

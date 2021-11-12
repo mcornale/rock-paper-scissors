@@ -49,7 +49,7 @@ export const closePopup = async function (popup, popupBackground) {
   popup.animate(
     [
       {
-        borderRadius: '1rem',
+        borderRadius: '0rem',
       },
     ],
     {
