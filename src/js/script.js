@@ -105,10 +105,11 @@ const calculateResult = function () {
     scoreElement,
     score
   );
-  renderResults();
+
+  renderResult();
 };
 
-const renderResults = function () {
+const renderResult = function () {
   playerChoiceShow.innerHTML = generateIconMarkup(
     playerChoice,
     playerChoiceIndex
